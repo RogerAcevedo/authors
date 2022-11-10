@@ -19,6 +19,18 @@ const AuthorSchema = new mongoose.Schema({
         required:[true, "Main Character: Come one, you can do better"],
         minLength:[3, "Name must be at least 3 letters."]
 
+    },
+    checkbox:{
+        type:Boolean
+    },
+    number:{
+        type:Number,
+        required:[true, "Number required"],
+        min:[18, "Must be 18+"]
+    },
+    drop:{
+        type:String,
+        required:[true, "Drop required"]
     }
 
     // TIMESTAMP HANDLES THE CREATED & UPDATED AT

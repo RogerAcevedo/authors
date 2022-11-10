@@ -43,6 +43,9 @@ const [refresh, setRefresh] = useState(false)
                         <th>Author</th>
                         <th>Manga</th>
                         <th>Main Character</th>
+                        <th>Checkbox</th>
+                        <th>Number</th>
+                        <th>Drop</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,11 +57,17 @@ const [refresh, setRefresh] = useState(false)
                                     <td>{author.author}</td>
                                     <td>{author.manga}</td>
                                     <td>{author.mc}</td>
+                                    {/* TERNARY TO DISPLAY CHECKBOX ANSWSER - BOOLEANS DONT SHOW */}
+                                    {(author.checkbox) ? <td>Yes</td> : <td>No</td> }
+                                    <td>{author.checkbox}</td>
+                                    <td>{author.number}</td>
+                                    <td>{author.drop}</td>
                                     <td>
                                         <Link to={`/authors/edit/${author._id}`} >Edit</Link>|
                                         {/* delete must have callback arrow functionality */}
                                         <button onClick={() => deleteAuthor(author._id)}>Delete</button>
                                     </td>
+                                    
                                 </tr>
                             )
 

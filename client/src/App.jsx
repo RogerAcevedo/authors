@@ -1,5 +1,6 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
+import "./slate.css"
 
 import Dashboard from './pages/Dashboard';
 import Create from './pages/Create';

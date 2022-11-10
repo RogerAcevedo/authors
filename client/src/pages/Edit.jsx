@@ -14,6 +14,10 @@ const Edit = () => {
     const [author, setAuthor] = useState("")
     const [manga, setManga] = useState("")
     const [mc, setMc] = useState("")
+    const [checkbox, setCheckbox] = useState(false)
+    const [number, setNumber] = useState("")
+    const [drop, setDrop] = useState(null)
+
     // ERROR STATE
     const [errors, setErrors] = useState([]);
 
@@ -28,6 +32,9 @@ const Edit = () => {
             setAuthor(res.data.author)
             setManga(res.data.manga)
             setMc(res.data.mc)
+            setCheckbox(res.data.checkbox)
+            setNumber(res.data.number)
+            setDrop(res.data.drop)
         })
         .catch(errors => console.log(errors))
     }, [])
@@ -39,7 +46,10 @@ const Edit = () => {
         let updatedBody ={
         author,
         manga,
-        mc
+        mc,
+        checkbox,
+        number,
+        drop
     }
     // MAKE AXIOS REQUEST
     axios.put(`http://localhost:8000/api/authors/${ author_id}`, updatedBody)
@@ -79,6 +89,20 @@ const Edit = () => {
                 <h3>Main Character:
                     <input type="text" value={mc} onChange={(e) => setMc(e.target.value)} />
                 </h3>
+                <h3>Checkbox:
+                <input type="checkbox" checked={checkbox} onChange={(e) => setCheckbox(e.target.checked)} />
+                </h3>
+                <h3>Number:
+                <input type="number" valule={number} onChange={(e) => setNumber(e.target.value)}  />
+            </h3>
+            <h3>Drop:
+                <select value={drop} onChange={(e) => setDrop(e.target.value)} >
+                    <option value="">Select one</option>
+                    <option value="shonen">Shonen</option>
+                    <option value="seinen">Seinen</option>
+                </select>
+
+            </h3>
                 <button>Submit</button>
             </form>
                     {/* map through every error and display each error */}

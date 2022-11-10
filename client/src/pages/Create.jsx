@@ -14,6 +14,10 @@ const Create = () => {
     const [author, setAuthor] = useState("")
     const [manga, setManga] = useState("")
     const [mc, setMc] = useState("")
+    const [checkbox, setCheckbox] = useState(false)
+    const [number, setNumber] = useState("")
+    const [drop, setDrop] = useState(null)
+
     // ERROR STATE
     const [errors, setErrors] = useState([]);
 
@@ -26,7 +30,10 @@ const Create = () => {
         let body = {
             "author": author,
             "manga" : manga,
-            "mc" : mc
+            "mc" : mc,
+            "checkbox" : checkbox,
+            "number" : number,
+            "drop" : drop
         }
 
     // AXIOS REQUEST - makes call to our express server(API)
@@ -38,6 +45,9 @@ const Create = () => {
             setAuthor("")
             setManga("")
             setMc("")
+            setCheckbox(false)
+            setNumber("")
+            setDrop("")
             navigate("/authors")
         })
         // .catch(errors => console.log(errors.response.data.errors))
@@ -74,7 +84,21 @@ const Create = () => {
             <h3>Main Character:
                 <input type="text" value={mc} onChange={(e) => setMc(e.target.value)} />
             </h3>
-            <button>Sumbit</button>
+            <h3>Checkbox:
+                <input type="checkbox" checked={checkbox} onChange={(e) => setCheckbox(e.target.checked)} />
+            </h3>
+            <h3>Number:
+                <input type="number" valule={number} onChange={(e) => setNumber(e.target.value)}  />
+            </h3>
+            <h3>Drop:
+                <select value={drop} onChange={(e) => setDrop(e.target.value)} >
+                    <option value="">Select one</option>
+                    <option value="shonen">Shonen</option>
+                    <option value="seinen">Seinen</option>
+                </select>
+
+            </h3>
+            <button>Submit</button>
         </form>
         {/* map through every error and display each error */}
         {/*  do not need to conditionally render over an empty array  */}
